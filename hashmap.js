@@ -28,7 +28,7 @@ class HashMap {
     for (let i = 0; i < oldBuckets.length; i++) {
       let currentNode = oldBuckets[i].head;
       while (currentNode) {
-        this.set(currentNode.value.key, currentNode.value.value);
+        this.set(currentNode.data.key, currentNode.data.value);
         currentNode = currentNode.next;
       }
     }
@@ -59,8 +59,8 @@ class HashMap {
     if (this.checkLoad()) this.resize();
     let currentNode = bucket.head;
     while (currentNode) {
-      if (currentNode.value.key === key) {
-        currentNode.value.value = value;
+      if (currentNode.data.key === key) {
+        currentNode.data.value = value;
         return;
       }
       currentNode = currentNode.next;
@@ -75,8 +75,8 @@ class HashMap {
 
     let currentNode = bucket.head;
     while (currentNode) {
-      if (currentNode.value.key === key) {
-        return currentNode.value.value;
+      if (currentNode.data.key === key) {
+        return currentNode.data.value;
       }
       currentNode = currentNode.next;
     }
@@ -90,7 +90,7 @@ class HashMap {
 
     let currentNode = bucket.head;
     while (currentNode) {
-      if (currentNode.value.key === key) {
+      if (currentNode.data.key === key) {
         return true;
       }
       currentNode = currentNode.next;
@@ -106,7 +106,7 @@ class HashMap {
       return false;
     }
 
-    if (bucket.head.value.key === key) {
+    if (bucket.head.data.key === key) {
       bucket.head = bucket.tail = null;
       return true;
     }
@@ -132,7 +132,7 @@ class HashMap {
     for (let i = 0; i < this.capacity; i++) {
       let currentNode = this.buckets[i].head;
       while (currentNode) {
-        keys.push(currentNode.value.key);
+        keys.push(currentNode.data.key);
         currentNode = currentNode.next;
       }
     }
@@ -144,7 +144,7 @@ class HashMap {
     for (let i = 0; i < this.capacity; i++) {
       let currentNode = this.buckets[i].head;
       while (currentNode) {
-        values.push(currentNode.value.value);
+        values.push(currentNode.data.value);
         currentNode = currentNode.next;
       }
     }
@@ -156,7 +156,7 @@ class HashMap {
     for (let i = 0; i < this.capacity; i++) {
       let currentNode = this.buckets[i].head;
       while (currentNode) {
-        entries.push([[currentNode.value.value], [currentNode.value.key]]);
+        entries.push([[currentNode.data.value], [currentNode.data.key]]);
         currentNode = currentNode.next;
       }
     }

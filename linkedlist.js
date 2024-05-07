@@ -1,6 +1,6 @@
 class Node {
-  constructor(value = null, nextNode = null) {
-    this.value = value;
+  constructor(data = null, nextNode = null) {
+    this.data = data;
     this.nextNode = nextNode;
   }
 }
@@ -11,22 +11,22 @@ class LinkedList {
     this.tail = null;
     this.size = 0;
   }
-  append(value) {
+  append(data) {
     if (this.head === null) {
-      this.head = new Node(value);
+      this.head = new Node(data);
       this.tail = this.head;
     } else {
-      this.tail.nextNode = new Node(value);
+      this.tail.nextNode = new Node(data);
       this.tail = this.tail.nextNode;
     }
     this.size++;
   }
-  prepend(value) {
+  prepend(data) {
     if (this.head === null) {
-      this.head = new Node(value);
+      this.head = new Node(data);
       this.tail = this.head;
     } else {
-      const newHead = new Node(value, this.head);
+      const newHead = new Node(data, this.head);
       this.head = newHead;
     }
     this.size++;
@@ -37,7 +37,7 @@ class LinkedList {
 
     while (current) {
       if (count === index) {
-        return current.value;
+        return current.data;
       }
       count++;
       current = current.nextNode;
@@ -67,13 +67,13 @@ class LinkedList {
 
     this.size--;
 
-    return current.value;
+    return current.data;
   }
-  contains(value) {
+  contains(data) {
     let current = this.head;
 
     while (current) {
-      if (current.value === value) {
+      if (current.data === data) {
         return true;
       }
       current = current.nextNode;
@@ -81,11 +81,11 @@ class LinkedList {
 
     return false;
   }
-  find(value) {
+  find(data) {
     let current = this.head;
 
     while (current) {
-      if (current.value === value) {
+      if (current.data === data) {
         return current;
       }
       current = current.nextNode;
@@ -98,7 +98,7 @@ class LinkedList {
     let result = "";
 
     while (current) {
-      result += `${current.value} -> `;
+      result += `${current.data} -> `;
       current = current.nextNode;
     }
 
@@ -106,13 +106,13 @@ class LinkedList {
 
     return result;
   }
-  insertAt(index, value) {
+  insertAt(index, data) {
     if (index < 0 || index > this.size) {
       return null;
     }
 
     if (index === 0) {
-      this.prepend(value);
+      this.prepend(data);
       return;
     }
 
@@ -126,7 +126,7 @@ class LinkedList {
       count++;
     }
 
-    const newNode = new Node(value, current);
+    const newNode = new Node(data, current);
     previous.nextNode = newNode;
     this.size++;
   }
