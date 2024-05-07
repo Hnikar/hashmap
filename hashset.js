@@ -32,7 +32,6 @@ class HashSet {
         currentNode = currentNode.next;
       }
     }
-    console.log("resized");
   }
 
   checkOutOfBounds(index) {

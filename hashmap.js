@@ -32,7 +32,6 @@ class HashMap {
         currentNode = currentNode.next;
       }
     }
-    console.log("resized");
   }
 
   checkOutOfBounds(index) {
