@@ -65,6 +65,20 @@ class HashMap {
     }
     return false;
   }
+
+  remove(key) {
+    const index = this.hash(key) % this.capacity;
+    const bucket = this.buckets[index];
+
+    if (!bucket.head) {
+      return false;
+    }
+
+    if (bucket.head.value.key === key) {
+      bucket.head = bucket.tail = null;
+      return true;
+    }
+  }
 }
 
 module.exports = HashMap;
