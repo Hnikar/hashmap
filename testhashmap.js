@@ -7,3 +7,4 @@ testHashMap.set("foo", "bar");
 testHashMap.set("baz", "qux");
 
 console.log(testHashMap.get("hello"));
+console.log("Has Check, should be true", testHashMap.has("hello"));
