@@ -10,6 +10,35 @@ class HashMap {
     }
   }
 
+  checkLoad() {
+    let size = 0;
+    for (let i = 0; i < this.capacity; i++) {
+      size += this.buckets[i].size;
+    }
+    return size / this.capacity > this.loadFactor;
+  }
+
+  resize() {
+    let oldBuckets = this.buckets;
+    this.capacity *= 2;
+    this.buckets = [];
+    for (let i = 0; i < this.capacity; i++) {
+      this.buckets[i] = new LinkedList();
+    }
+    for (let i = 0; i < oldBuckets.length; i++) {
+      let currentNode = oldBuckets[i].head;
+      while (currentNode) {
+        this.set(currentNode.value.key, currentNode.value.value);
+        currentNode = currentNode.next;
+      }
+    }
+    console.log("resized");
+  }
+
+  checkOutOfBounds(index) {
+    return index < 0 || index >= this.capacity;
+  }
+
   hash(key) {
     let hashCode = 0;
 
@@ -24,7 +53,10 @@ class HashMap {
   set(key, value) {
     const index = this.hash(key) % this.capacity;
     const bucket = this.buckets[index];
-
+    if (this.checkOutOfBounds(index)) {
+      throw new Error("Trying to access index out of bound");
+    }
+    if (this.checkLoad()) this.resize();
     let currentNode = bucket.head;
     while (currentNode) {
       if (currentNode.value.key === key) {
