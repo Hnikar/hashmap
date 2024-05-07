@@ -21,9 +21,36 @@ class HashMap {
     return hashCode;
   }
 
-  set(key, value) {}
+  set(key, value) {
+    const index = this.hash(key) % this.capacity;
+    const bucket = this.buckets[index];
 
-  get(key) {}
+    let currentNode = bucket.head;
+    while (currentNode) {
+      if (currentNode.value.key === key) {
+        currentNode.value.value = value;
+        return;
+      }
+      currentNode = currentNode.next;
+    }
+
+    bucket.append({ key, value });
+  }
+
+  get(key) {
+    const index = this.hash(key) % this.capacity;
+    const bucket = this.buckets[index];
+
+    let currentNode = bucket.head;
+    while (currentNode) {
+      if (currentNode.value.key === key) {
+        return currentNode.value.value;
+      }
+      currentNode = currentNode.next;
+    }
+
+    return null;
+  }
 }
 
 module.exports = HashMap;
