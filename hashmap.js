@@ -95,6 +95,41 @@ class HashMap {
       this.buckets[i] = new LinkedList();
     }
   }
+  keys() {
+    let keys = [];
+    for (let i = 0; i < this.capacity; i++) {
+      let currentNode = this.buckets[i].head;
+      while (currentNode) {
+        keys.push(currentNode.value.key);
+        currentNode = currentNode.next;
+      }
+    }
+    return keys;
+  }
+
+  values() {
+    let values = [];
+    for (let i = 0; i < this.capacity; i++) {
+      let currentNode = this.buckets[i].head;
+      while (currentNode) {
+        values.push(currentNode.value.value);
+        currentNode = currentNode.next;
+      }
+    }
+    return values;
+  }
+
+  entries() {
+    let entries = [];
+    for (let i = 0; i < this.capacity; i++) {
+      let currentNode = this.buckets[i].head;
+      while (currentNode) {
+        entries.push([[currentNode.value.value], [currentNode.value.key]]);
+        currentNode = currentNode.next;
+      }
+    }
+    return entries;
+  }
 }
 
 module.exports = HashMap;
