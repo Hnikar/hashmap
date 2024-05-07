@@ -90,6 +90,11 @@ class HashMap {
     }
     return count;
   }
+  clear() {
+    for (let i = 0; i < this.capacity; i++) {
+      this.buckets[i] = new LinkedList();
+    }
+  }
 }
 
 module.exports = HashMap;
