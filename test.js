@@ -34,7 +34,7 @@ function testHashMap() {
 }
 
 function testHashSet() {
-  const hashSet = new HashSet();
+  const set = new HashSet();
 
   set.set("value1");
   set.set("value2");
