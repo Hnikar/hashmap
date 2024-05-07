@@ -79,6 +79,17 @@ class HashMap {
       return true;
     }
   }
+  length() {
+    let count = 0;
+    for (let i = 0; i < this.capacity; i++) {
+      let currentNode = this.buckets[i].head;
+      while (currentNode) {
+        count++;
+        currentNode = currentNode.next;
+      }
+    }
+    return count;
+  }
 }
 
 module.exports = HashMap;
